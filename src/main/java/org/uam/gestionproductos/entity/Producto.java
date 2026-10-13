@@ -46,7 +46,19 @@ public class Producto {
     @JoinColumn(name = "proveedor_id")
     private Proveedor proveedor;
 
-    // Agrega sus Getters y Setters al final de la clase:
+    // Getters y Setters al final de la clase:
     public Proveedor getProveedor() { return proveedor; }
     public void setProveedor(Proveedor proveedor) { this.proveedor = proveedor; }
+
+    @ManyToMany
+    @JoinTable(
+            name = "producto_etiqueta",
+            joinColumns = @JoinColumn(name = "producto_id"),
+            inverseJoinColumns = @JoinColumn(name = "etiqueta_id")
+    )
+    private java.util.Set<Etiqueta> etiquetas = new java.util.HashSet<>();
+
+    // Getter y Setter
+    public java.util.Set<Etiqueta> getEtiquetas() { return etiquetas; }
+    public void setEtiquetas(java.util.Set<Etiqueta> etiquetas) { this.etiquetas = etiquetas; }
 }
